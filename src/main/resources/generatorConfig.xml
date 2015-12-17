@@ -5,45 +5,89 @@
 
 
 
-<generatorConfiguration> 
-   
-  <context id="mysqlTables" targetRuntime="MyBatis3">
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://10.100.142.11:3306/godzilla_db"
-     userId="root" password="root"/>
-    
-    <!-- 指定生成的类型为java类型，避免数据库中number等类型字段 -->
-    <javaTypeResolver>
-      <property name="forceBigDecimals" value="false"/>
-    </javaTypeResolver>
-    
-    <!-- 生成model模型，对应的包，存放位置可以指定具体的路径,如/ProjectName/src，也可以使用MAVEN来自动生成 -->
-    <javaModelGenerator targetPackage="cn.creditease.godzilla.model" targetProject="MAVEN">
-      <property name="enableSubPackages" value="true"/>
-    </javaModelGenerator>
-    
-    <!--对应的xml mapper文件  -->
-    <sqlMapGenerator targetPackage="cn.creditease.godzilla.dao" targetProject="MAVEN">
-      <property name="enableSubPackages" value="true"/>
-    </sqlMapGenerator>
-    
-    <!-- 对应的dao接口 -->
-    <javaClientGenerator type="XMLMAPPER" targetPackage="cn.creditease.godzilla.dao" targetProject="MAVEN">
-      <property name="enableSubPackages" value="true"/>
-    </javaClientGenerator>
-    
-    
-    <table tableName="t_g_user" domainObjectName="User" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/>
-  	<table tableName="project_status" domainObjectName="ProjStatus" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/>
-  	<table tableName="t_g_project" domainObjectName="Project" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/>
-  	<table tableName="t_g_function_right" domainObjectName="FunRight" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/>
-  	<table tableName="t_g_properties_config" domainObjectName="PropConfig" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/>
-  	<table tableName="t_g_project_status_history" domainObjectName="ProjStatus" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/>
-  	<table tableName="t_g_project_private" domainObjectName="ProjPrivate" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/>
-  	<table tableName="t_g_operate_logs" domainObjectName="OperateLog" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/>
-  	<table tableName="t_g_svn_conflict" domainObjectName="SvnConflict" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/>
-  	<table tableName="t_g_maven_command_logs" domainObjectName="MvnCmdLog" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/>
-  	<table tableName="t_g_svn_change_logs" domainObjectName="SvnChangeLog" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/>
-  	<table tableName="t_g_svn_command_logs" domainObjectName="SvnCmdLog" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/>
-  	
-  </context>
+<generatorConfiguration>
+
+	<context id="mysqlTables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+			<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://10.100.142.11:3306/workcenter" userId="root"
+			password="root" />
+
+		<!-- 指定生成的类型为java类型，避免数据库中number等类型字段 -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 生成model模型，对应的包，存放位置可以指定具体的路径,如/ProjectName/src，也可以使用MAVEN来自动生成 -->
+		<javaModelGenerator targetPackage="cn.workcenter.model"
+			targetProject="MAVEN">
+			<property name="enableSubPackages" value="true" />
+		</javaModelGenerator>
+
+		<!--对应的xml mapper文件 -->
+		<sqlMapGenerator targetPackage="cn.workcenter.dao"
+			targetProject="MAVEN">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- 对应的dao接口 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="cn.workcenter.xml" targetProject="MAVEN">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+
+<table tableName="base_user" domainObjectName="User" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+
+<!-- <table tableName="base_flow_node" domainObjectName="FlowNode" 
+enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_flow_processdefinition" domainObjectName="FlowProcessdefinition" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_flow_processinstance" domainObjectName="FlowProcessinstance" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_flow_swimlane" domainObjectName="FlowSwimlane" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_flow_swimlane_user" domainObjectName="FlowSwimlaneUser" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_flow_task" domainObjectName="FlowTask" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_flow_taskinstance" domainObjectName="FlowTaskinstance" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_flow_token" domainObjectName="FlowToken" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_flow_transition" domainObjectName="FlowTransition" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+
+<table tableName="base_flow_variableaccess" domainObjectName="FlowVariableaccess" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_flow_variableinstance" domainObjectName="FlowVariableinstance" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_group" domainObjectName="Group" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_group_user" domainObjectName="GroupUser" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_resource" domainObjectName="Resource" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_role" domainObjectName="Role" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_role_resource" domainObjectName="RoleResource" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_user" domainObjectName="User" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+<table tableName="base_user_role" domainObjectName="UserRole" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" />
+ -->
+		<!-- <table tableName="t_g_user" domainObjectName="User" enableCountByExample="false" 
+			enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/> 
+			<table tableName="project_status" domainObjectName="ProjStatus" enableCountByExample="false" 
+			enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/> 
+			<table tableName="t_g_project" domainObjectName="Project" enableCountByExample="false" 
+			enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/> 
+			<table tableName="t_g_function_right" domainObjectName="FunRight" enableCountByExample="false" 
+			enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/> 
+			<table tableName="t_g_properties_config" domainObjectName="PropConfig" enableCountByExample="false" 
+			enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"/> 
+			<table tableName="t_g_project_status_history" domainObjectName="ProjStatus" 
+			enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false"/> <table tableName="t_g_project_private" domainObjectName="ProjPrivate" 
+			enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false"/> <table tableName="t_g_operate_logs" domainObjectName="OperateLog" 
+			enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false"/> <table tableName="t_g_svn_conflict" domainObjectName="SvnConflict" 
+			enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false"/> <table tableName="t_g_maven_command_logs" 
+			domainObjectName="MvnCmdLog" enableCountByExample="false" enableSelectByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false"/> <table tableName="t_g_svn_change_logs" 
+			domainObjectName="SvnChangeLog" enableCountByExample="false" enableSelectByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false"/> <table tableName="t_g_svn_command_logs" 
+			domainObjectName="SvnCmdLog" enableCountByExample="false" enableSelectByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false"/> -->
+	</context>
 </generatorConfiguration>
